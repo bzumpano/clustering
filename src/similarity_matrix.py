@@ -1,4 +1,5 @@
 from math import sqrt
+from sympy import Matrix
 
 # Mede a distancia de 2 pontos a(xa, ya) e b(xb, yb)
 def distance(a, b):
@@ -14,30 +15,23 @@ def distance(a, b):
 
 
 #
-# Regra:
+# Determina valor de similaridade entre pontos
 #
 # Returns:
 #   1, se distance(a, b) < epsilon
 #   0, c.c
 #
-def similarity_value(dist):
+def similarity_value(a, b):
   epsilon = 1.1
+  dist = distance(a, b)
 
   return 1 if dist < epsilon else 0
 
 
 
 def run(points):
-  matrix = []
+  dimen = len(points)
 
-  for i in range(0, len(points)):
-    row = []
+  return  Matrix(dimen, dimen, lambda i, j: similarity_value(points[i], points[j]))
 
-    for j in range(0, len(points)):
-      dist = distance(points[i], points[j])
-      row.append(similarity_value(dist))
-
-    matrix.append(row)
-
-  return matrix
 
