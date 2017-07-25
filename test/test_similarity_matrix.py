@@ -3,7 +3,7 @@ import unittest
 import sys
 sys.path.append('../src')
 
-from similarity_matrix import distance, similarity_value, similarity_matrix
+from similarity_matrix import distance, similarity_value, run
 
 class TestSimilarityMatrix(unittest.TestCase):
 
@@ -32,7 +32,7 @@ class TestSimilarityMatrix(unittest.TestCase):
       [1, 0, 1, 1]
     ]
 
-    self.assertEquals(similarity_matrix(points), expected)
+    self.assertEquals(run(points), expected)
 
 
 

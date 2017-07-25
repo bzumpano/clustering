@@ -27,7 +27,7 @@ def similarity_value(dist):
 
 
 
-def similarity_matrix(points):
+def run(points):
   matrix = []
 
   for i in range(0, len(points)):

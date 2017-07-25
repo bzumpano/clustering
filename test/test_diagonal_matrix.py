@@ -3,7 +3,7 @@ import unittest
 import sys
 sys.path.append('../src')
 
-from diagonal_matrix import diagonal_matrix
+from diagonal_matrix import run
 
 class TestDiagonalMatrix(unittest.TestCase):
 
@@ -23,7 +23,7 @@ class TestDiagonalMatrix(unittest.TestCase):
       [0, 0, 0, 6]
     ]
 
-    self.assertEquals(diagonal_matrix(adjacency_matrix), expected)
+    self.assertEquals(run(adjacency_matrix), expected)
 
 
 
