@@ -1,4 +1,3 @@
-# import unittest
 from math import sqrt
 
 # Mede a distancia de 2 pontos a(xa, ya) e b(xb, yb)
