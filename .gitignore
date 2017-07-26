@@ -102,4 +102,5 @@ ENV/
 
 
 # Ignore sensible data
-data/*
+data/areas/
+data/*.zip
