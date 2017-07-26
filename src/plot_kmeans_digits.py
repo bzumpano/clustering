@@ -54,7 +54,7 @@ print("n_digits: %d, \t n_samples %d, \t n_features %d"
 
 print(79 * '_')
 print('% 9s' % 'init'
-      '    time  inertia    homo   compl  v-meas     ARI AMI  silhouette')
+      '        time    inertia   homo   compl  v-meas   ARI     AMI    silhouette')
 
 
 def bench_k_means(estimator, name, data):
