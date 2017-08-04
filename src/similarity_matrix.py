@@ -1,16 +1,11 @@
 from math import sqrt
 from sympy import Matrix
 
+import numpy as np
+
 # Mede a distancia de 2 pontos a(xa, ya) e b(xb, yb)
 def distance(a, b):
-  xa = a[0]
-  xb = b[0]
-
-  ya = a[1]
-  yb = b[1]
-
-  dist = sqrt((xa-xb)**2) + ((ya-yb)**2)
-  # print('d(%s, %s)=%f' % (str(a), str(b), dist))
+  dist = np.linalg.norm(np.array(a) - np.array(b))
   return dist
 
 
@@ -21,7 +16,7 @@ def distance(a, b):
 #   1, se distance(a, b) < epsilon
 #   0, c.c
 #
-def similarity_value(a, b):
+def epsilon_neighborhood(a, b):
   epsilon = 1.1
   dist = distance(a, b)
 
@@ -32,6 +27,4 @@ def similarity_value(a, b):
 def run(points):
   dimen = len(points)
 
-  return  Matrix(dimen, dimen, lambda i, j: similarity_value(points[i], points[j]))
-
-
+  return  Matrix(dimen, dimen, lambda i, j: epsilon_neighborhood(points[i], points[j]))
