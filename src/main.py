@@ -10,17 +10,21 @@ import v_matrix
 
 
 # TODO Ler dados dos arquivos
-points = [[0, 0], [1, 0], [1, 1], [0, 1]]
+points = [
+  [0, 0, 0],
+  [1, 0, 0],
+  [0, 1, 0],
+  [0, 0, 1],
+  [1, 1, 0],
+  [1, 0, 1],
+  [1, 1, 1],
+  [0, 1, 1]
+]
 
 similarity_matrix = similarity_matrix.run(points)
 
-# TODO Verificar como calcular
-adjacency_matrix = Matrix([
-  [1, 2, 0, 3],
-  [2, 1, 3, 0],
-  [0, 3, 1, 2],
-  [3, 0, 2, 1]
-])
+# Ainda nao foram definidos os pesos, usar matriz similaridade ate definicao
+adjacency_matrix = similarity_matrix
 
 diagonal_matrix = diagonal_matrix.run(adjacency_matrix)
 
