@@ -3,7 +3,7 @@ import unittest
 import sys
 sys.path.append('../src')
 
-from sympy import Matrix
+from sympy import Matrix, pretty
 from similarity_matrix import run
 
 class TestSimilarityMatrix(unittest.TestCase):

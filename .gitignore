@@ -104,3 +104,6 @@ ENV/
 # Ignore sensible data
 data/areas/
 data/*.zip
+
+# Mac OS
+*.DS_Store

@@ -1,6 +1,8 @@
 from math import sqrt
 from sympy import Matrix
 
+from sklearn.neighbors import NearestNeighbors
+
 import numpy as np
 
 # Mede a distancia de 2 pontos a(xa, ya) e b(xb, yb)
@@ -25,6 +27,15 @@ def epsilon_neighborhood(a, b):
 
 
 def run(points):
-  dimen = len(points)
+  X = np.array(points)
 
-  return  Matrix(dimen, dimen, lambda i, j: epsilon_neighborhood(points[i], points[j]))
+  k = len(points) / 2
+
+  print ' K-nearest value:', k
+  nbrs = NearestNeighbors(n_neighbors=k).fit(X)
+
+  # print distances
+  return Matrix(nbrs.kneighbors_graph(X).toarray())
+  # dimen = len(points)
+
+  # return  Matrix(dimen, dimen, lambda i, j: epsilon_neighborhood(points[i], points[j]))

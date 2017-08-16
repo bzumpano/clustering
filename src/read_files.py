@@ -28,9 +28,7 @@ def read_csv(files):
 
   return points
 
-def run():
-
-  path = '../data/areas'
+def run(path = '../data/areas'):
   files = all_files(path)
 
-  print read_csv(files)
+  return read_csv(files)
