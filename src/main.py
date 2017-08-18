@@ -53,7 +53,7 @@ k = 2
 v_matrix = v_matrix(k, eigenvects)
 
 np_v_matrix = np.array(v_matrix).astype(np.float64)
-np.savetxt('main.txt', np_v_matrix)
+np.savetxt('v_matrix.txt', np_v_matrix)
 
 ends_at = datetime.now()
 process_time_in_seconds = (ends_at - starts_at).total_seconds()
