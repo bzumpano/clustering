@@ -30,6 +30,8 @@ diagonal_matrix = diagonal_matrix(adjacency_matrix)
 # ---
 laplacian_matrix = laplacian_matrix(diagonal_matrix, adjacency_matrix)
 
+np_laplacian_matrix = np.array(laplacian_matrix).astype(np.float64)
+np.savetxt('laplacian_matrix.txt', np_laplacian_matrix)
 
 
 # # ---
@@ -38,22 +40,22 @@ laplacian_matrix = laplacian_matrix(diagonal_matrix, adjacency_matrix)
 # eigenvects = P
 # eigenvals = extract_diagonal(D)
 # #######################################
-np_laplacian_matrix = np.array(laplacian_matrix).astype(np.float64)
-eigenvals, eigenvects = np.linalg.eig(np_laplacian_matrix)
+# np_laplacian_matrix = np.array(laplacian_matrix).astype(np.float64)
+# eigenvals, eigenvects = np.linalg.eig(np_laplacian_matrix)
 # #######################################
 
 
 # ---
-k = 2
+# k = 2
 
 
 # print 'Starting v_matrix at ', str(datetime.now())
 
 # # ---
-v_matrix = v_matrix(k, eigenvects)
+# v_matrix = v_matrix(k, eigenvects)
 
-np_v_matrix = np.array(v_matrix).astype(np.float64)
-np.savetxt('v_matrix.txt', np_v_matrix)
+# np_v_matrix = np.array(v_matrix).astype(np.float64)
+# np.savetxt('v_matrix.txt', np_v_matrix)
 
 ends_at = datetime.now()
 process_time_in_seconds = (ends_at - starts_at).total_seconds()
