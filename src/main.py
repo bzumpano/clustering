@@ -1,98 +1,63 @@
-from sympy import Matrix, pretty
 import numpy as np
-from sklearn.cluster import KMeans
-
-from functions import *
 
 from datetime import datetime
+from sympy import Matrix, pretty
+from sklearn.cluster import KMeans
 
-import similarity_matrix
-import diagonal_matrix
-import laplacian_matrix
-import v_matrix
 
 import read_files
+from functions import *
+from matrix_functions import *
 
-print 'Starting at ', str(datetime.now())
 
+starts_at = datetime.now()
 
 # Le arquivos e transforma em matriz
 path = '../data/areas'
-files = read_files.all_files(path)
-
-points = read_files.read_csv(files)
+points = read_files.run()
 
 
 # ---
-similarity_matrix = similarity_matrix.run(points)
+similarity_matrix = similarity_matrix(points)
 
 # ---
 # Ainda nao foram definidos os pesos, usar matriz similaridade ate definicao
 adjacency_matrix = similarity_matrix
 
 # ---
-diagonal_matrix = diagonal_matrix.run(adjacency_matrix)
+diagonal_matrix = diagonal_matrix(adjacency_matrix)
 
-
-print 'Starting laplacian_matrix at', str(datetime.now())
 # ---
-#
-print 'diagonal_matrix shape:', diagonal_matrix.shape
-print 'adjacency_matrix shape:', adjacency_matrix.shape
-
-laplacian_matrix = laplacian_matrix.run(diagonal_matrix, adjacency_matrix)
-
-print 'Ending laplacian_matrix at', str(datetime.now())
+laplacian_matrix = laplacian_matrix(diagonal_matrix, adjacency_matrix)
 
 
 
+# # ---
 # #######################################
-# print 'Starting eigenvals at', str(datetime.now())
-# # ---
-# eigenvals = laplacian_matrix.eigenvals()
-
-# print 'Ending eigenvals at', str(datetime.now())
-
-
-# print 'Starting eigenvects at', str(datetime.now())
-# # ---
-# eigenvects = laplacian_matrix.eigenvects()
-
-# print 'Ending eigenvects at', str(datetime.now())
+# P, D = laplacian_matrix.diagonalize()
+# eigenvects = P
+# eigenvals = extract_diagonal(D)
+# #######################################
+np_laplacian_matrix = np.array(laplacian_matrix).astype(np.float64)
+eigenvals, eigenvects = np.linalg.eig(np_laplacian_matrix)
 # #######################################
 
 
-
-
-#######################################
-print 'Starting eigenvects and eigenvals at ', str(datetime.now())
 # ---
-P, D = laplacian_matrix.diagonalize()
-eigenvects = P
-eigenvals = extract_diagonal(D)
-
-print 'Ending eigenvects and eigenvals at ', str(datetime.now())
-#######################################
-
-
-
-
-# ---
-# k = int(find_min_diff(eigenvals))
 k = 2
 
 
-print 'Starting v_matrix at ', str(datetime.now())
+# print 'Starting v_matrix at ', str(datetime.now())
 
-# ---
-v_matrix = v_matrix.run(k, eigenvects)
+# # ---
+v_matrix = v_matrix(k, eigenvects)
 
 np_v_matrix = np.array(v_matrix).astype(np.float64)
-np.savetxt('test.txt', np_v_matrix)
+np.savetxt('main.txt', np_v_matrix)
 
-print v_matrix
-
-print 'Ending at ', str(datetime.now())
+ends_at = datetime.now()
+process_time_in_seconds = (ends_at - starts_at).total_seconds()
+print 'It takes', process_time_in_seconds, 'seconds to process', len(points), 'points'
 
 # ---
 # Calcula k-means

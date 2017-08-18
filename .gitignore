@@ -107,3 +107,4 @@ data/*.zip
 
 # Mac OS
 *.DS_Store
+src/*.txt

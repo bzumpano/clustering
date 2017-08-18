@@ -3,15 +3,15 @@ import sys
 import csv
 
 
-def all_files(target_path):
+def all_files(target_path, file_extension):
   f = []
 
   for (dirpath, _, filenames) in walk(target_path):
-      # f.extend(filenames)
-      f.extend(path.abspath(path.join(dirpath, filename)) for filename in filenames)
+      f.extend(path.abspath(path.join(dirpath, filename)) for filename in filenames if filename.endswith(file_extension))
       break
 
   return f
+
 
 def read_csv(files):
 
@@ -28,7 +28,7 @@ def read_csv(files):
 
   return points
 
-def run(path = '../data/areas'):
-  files = all_files(path)
+def run(path = '../data/areas', extension = '.area'):
+  files = all_files(path, extension)
 
   return read_csv(files)
