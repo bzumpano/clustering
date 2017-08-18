@@ -101,5 +101,25 @@ class TestMatrixFunctions(unittest.TestCase):
 
 
 
+
+
+  def test_is_symmetric(self):
+    matrix = Matrix([
+      [4, 0, 0, 0, 0, 0, 0, 0],
+      [0, 4, 0, 0, 0, 0, 0, 0],
+      [0, 0, 4, 0, 0, 0, 0, 0],
+      [0, 0, 0, 4, 0, 0, 0, 0],
+      [0, 0, 0, 0, 4, 0, 0, 0],
+      [0, 0, 0, 0, 0, 4, 0, 0],
+      [0, 0, 0, 0, 0, 0, 4, 0],
+      [0, 0, 0, 0, 0, 0, 0, 4]
+    ])
+    expected = True
+
+    result = is_symmetric(matrix)
+    self.assertEqual(result, expected)
+
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -29,3 +29,9 @@ def laplacian_matrix(diagonal_matrix, adjacency_matrix):
 
 def v_matrix(k, eigenvectors_matrix):
   return eigenvectors_matrix[:, :k]
+
+
+
+def is_symmetric(M):
+  a = np.array(M).astype(np.float64)
+  return np.allclose(a, a.T)

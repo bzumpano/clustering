@@ -19,6 +19,7 @@ points = read_files.run()
 
 # ---
 similarity_matrix = similarity_matrix(points)
+# print is_symmetric(similarity_matrix)
 
 # ---
 # Ainda nao foram definidos os pesos, usar matriz similaridade ate definicao
